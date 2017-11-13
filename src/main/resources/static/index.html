@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Nov 17, 2017 10:59:59").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+    
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Output the result in an element with id="demo"
+    document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+    
+    // If the count down is over, write some text 
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+    }
+}, 1000);
+</script>
+</head>
+<body>
+	<font face="Arial">
+		<table style="height: 100%; width: 100%;">
+			<tbody>
+				<tr	style="width: 100%; height: 20%; background-size: 100% 100%; background-image: url('images/page_top.jpg');">
+					<td></td>
+				</tr>
+				<tr	style="width: 100%; height: 50%; background-size: 100% 100%; background-image: url('images/coming.jpg');">
+					<td style="text-align: center;vertical-align: middle;">
+						<div style="margin-left:10%; width:80%; height: 80%;background-color: rgba(0, 0, 0, 0.2);">
+							<h1 style=" padding-top: 25%; font-size: -webkit-xxx-large;color:white;">
+								<p id="countdown"></p>
+							</h1>
+						</div>
+					</td>
+				</tr>
+				<tr	style="width: 100%; height: 30%; background-size: 100% 100%; background-image: url('images/page_bottom.jpg');">
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</font>
+</body>
+</html>
+

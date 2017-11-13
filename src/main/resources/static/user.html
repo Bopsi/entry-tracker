@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<style>
+table {
+	background-image: linear-gradient(to bottom, #86ff68 30%, #fffc68 70%);
+	/* the gradient */
+	background-origin: border-box;
+	/* set background to start from border-box */
+	border-spacing: 0px; /* space between each cell */
+	border: 0px solid transparent; /* optional */
+}
+</style>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/user.js"></script>
+</head>
+<body ng-app="ctsEvent" ng-controller="myCtrl">
+	<font face="Arial">
+		<table style="height: 100%; width: 100%;">
+			<tbody>
+				<tr>
+					<td style="width: 100%; background-size: 100%;background-image: url('images/page_top.jpg');" colspan="3" >
+					</td>
+				</tr>
+				<tr valign="bottom" ng-if="status==true" style="background-size: 100%;background-image: url('images/restaurant.jpg');">
+					<td style="width: 33.33%; text-align: center;">
+						<div id="divIcon1" style="height: 260px">
+							<img ng-if="invited.registered==false" id="img_icon1" src="images/guest.svg" height="200px" width="200px" border="1" style="box-shadow: 10px 10px 5px #888888;background-color: white;" ng-click="updateRegitration()">
+							<img ng-if="invited.registered==true" id="img_icon1" src="images/registered_guest.svg" height="200px" width="200px" border="1" style="box-shadow: 10px 10px 5px #888888;background-color: white;">
+						</div>
+					</td>
+					<td style="width: 33.33%; text-align: center;">
+						<div id="divIcon2" style="height: 260px">
+							<img ng-if="invited.luncheon!=true" src="images/lunch.svg" height="200px" width="200px" border="1" style="box-shadow: 10px 10px 5px #888888;background-color: white;" ng-click="updateLunch()">
+							<img ng-if="invited.luncheon==true" src="images/lunch_done.svg" height="200px" width="200px" border="1" style="box-shadow: 10px 10px 5px #888888;background-color: white;">
+						</div>
+					</td>
+					<td style="width: 33.33%; text-align: center;">
+						<div id="divIcon3" style="height: 260px">
+							<img ng-if="invited.hightea!=true" src="images/tea.svg" height="200px" width="200px" border="1" style="box-shadow: 10px 10px 5px #888888;background-color: white;" ng-click="updateTea()">
+							<img ng-if="invited.hightea==true" src="images/tea_done.svg" height="200px" width="200px" border="1" style="box-shadow: 10px 10px 5px #888888;background-color: white;">
+						</div>
+					</td>
+				</tr>
+				<tr valign="bottom" ng-if="status==false" style="background-size: 100%;background-image: url('images/restaurant.jpg');">
+					<td style="width: 33.33%; text-align: center;">
+						<div id="divIcon3" style="height: 260px">
+							<img id="img_icon3" src="images/unknown_guest.svg" height="200px" width="200px" border="1" style="box-shadow: 10px 10px 5px #888888;background-color: white;">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 100%; vertical-align: top; text-align: center;background-size: 100% 100%;background-image: url('images/page_bottom.jpg');" colspan="3" >	
+						<h1 ng-if="status==true" style="padding-top: 50px;font-size: -webkit-xxx-large;color: white;">{{invited.name}}</h1>
+						<h1 ng-if="status==false" style="padding-top: 50px;font-size: -webkit-xxx-large;color: white;">Guest Not Invited!</h1>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</font>
+</body>
+</html>
+

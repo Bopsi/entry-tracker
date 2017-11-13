@@ -1,0 +1,103 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<style>
+table {
+	background-image: linear-gradient(to bottom, #86ff68 30%, #fffc68 70%);
+	/* the gradient */
+	background-origin: border-box;
+	/* set background to start from border-box */
+	border-spacing: 0px; /* space between each cell */
+	border: 0px solid transparent; /* optional */
+}
+.yellow {
+	width: 10%;
+	height: 10%;
+	float: left;
+	background-color: yellow;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+.green {
+	width: 10%;
+	height: 10%;
+	float: left;
+	background-color: green;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+.legend {
+	float: left;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	color: white;
+}
+</style>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="chart/Chart.js"></script>
+<script src="chart/angular-chart.js"></script>
+<script src="js/event.js"></script>
+</head>
+
+<body ng-app="ctsEvent" ng-controller="myCtrl">
+	<font face="Arial">
+		<table style="height: 100%; width: 100%;">
+			<tbody>
+				<tr>
+					<td style="width: 100%; height: 20%; background-size: 100% 100%; background-image: url('images/page_top.jpg');" colspan="2">
+					</td>
+				</tr>
+				<tr valign="middle" colspan="2" style="width: 100%; height: 50%;background-size: 100% 100%; background-image: url('images/restaurant.jpg');">
+					<td style="text-align: center;">
+						<div id="divGraph1"	style="float: left;left: 100px;height: 45%; width: 45%; margin-left: 27.3%; border: 1px solid black;background-color: rgba(0, 0, 0, 0.4);">
+							<h1 style="color:white">Presence Today {{data_all[1]}}</h1>
+							<h1>
+								<div class="yellow"></div> <div class="legend">Invited</div>
+								<div class="green"></div> <div class="legend">Present</div>
+							</h1>
+							<canvas id="presence"  class="chart chart-pie" chart-data="data_all" chart-labels="label_all" chart-colors="colors">
+							</canvas> 
+							
+						</div>
+						<div id="divGraph2"	style="float: left;height: 45%; width: 45%; margin: 2.3%; border: 1px solid black;background-color: rgba(0, 0, 0, 0.4);">
+							<h1 style="color:white">Taken Lunch {{data_lunch[0]}}</h1>
+							<h1>
+								<div class="yellow"></div> <div class="legend">Present</div>
+								<div class="green"></div> <div class="legend">Taken</div>
+							</h1>
+							<canvas id="lunch" class="chart chart-pie" chart-data="data_lunch" chart-labels="label_lunch" chart-colors="colors">
+							</canvas> 
+						</div>
+						<div id="divGraph3"	style="float: left;height: 45%; width: 45%; margin: 2.3%; border: 1px solid black;background-color: rgba(0, 0, 0, 0.4);">
+							<h1 style="color:white">Taken High Tea {{data_tea[0]}}</h1>
+							<h1>
+								<div class="yellow"></div> <div class="legend">Present</div>
+								<div class="green"></div> <div class="legend">Taken</div>
+							</h1>
+							<canvas id="tea"  class="chart chart-pie" chart-data="data_tea" chart-labels="label_tea" chart-colors="colors">
+							</canvas> 
+						</div>
+						<!-- <div id="divGraph4"	style="vertical-align:middle;float: left;height: 45%; width: 45%; margin: 2.3%; border: 1px solid black;background-color: rgba(0, 0, 0, 0.4);">
+							<h1 style="color:white">Check Invitaion List</h1>
+							<img src="images/list.svg" width="65%" height="65%" />
+						</div> -->
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 100%; height:30%" colspan="2">
+						<img src="images/page_bottom.jpg" width="100%" height="100%" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</font>
+</body>
+</html>
+<!-- 
+	1. Presence today
+	2. Taken Lunch
+	3. Taken High Tea
+
+ -->
