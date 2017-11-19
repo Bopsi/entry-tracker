@@ -10,11 +10,33 @@ table {
 	border-spacing: 0px; /* space between each cell */
 	border: 0px solid transparent; /* optional */
 }
+#loading {  
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:1000;
+    background-color:black;
+    opacity: .8;
+ }
+
+.ajax-loader {
+    position: absolute;
+    left: 45%;
+    top: 45%;
+    margin-left: -32px; /* -1 * image width / 2 */
+    margin-top: -32px;  /* -1 * image height / 2 */
+    display: block;     
+}
 </style>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/angular.min.js"></script>
 <script src="js/user.js"></script>
 </head>
+<div id="loading">
+    <img src="images/ajax_loader.gif" class="ajax-loader" />
+</div>
 <body ng-app="ctsEvent" ng-controller="myCtrl">
 	<font face="Arial">
 		<table style="height: 100%; width: 100%;">
@@ -53,7 +75,7 @@ table {
 				<tr>
 					<td style="width: 100%; vertical-align: top; text-align: center;background-size: 100% 100%;background-image: url('images/page_bottom.jpg');" colspan="3" >	
 						<h1 ng-if="status==true" style="padding-top: 50px;font-size: -webkit-xxx-large;color: white;">{{invited.name}}</h1>
-						<h1 ng-if="status==false" style="padding-top: 50px;font-size: -webkit-xxx-large;color: white;">Guest Not Invited!</h1>
+						<h1 ng-if="status==false" style="padding-top: 50px;font-size: -webkit-xxx-large;color: white;">Guest Not Found!</h1>
 					</td>
 				</tr>
 			</tbody>

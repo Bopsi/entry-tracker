@@ -1,9 +1,14 @@
 var app = angular.module("ctsEvent", []);
 app.controller("myCtrl", function($scope, $location, $http, $window) {
-	var countDownDate = new Date("Nov 17, 2017 10:59:59").getTime();
-	var now = new Date().getTime();
 	params = $location.absUrl().split('?')[1];
 	params = params.split('&');
+	
+	if(params.length!=2){
+		alert("Incorrect numbers of query parameters, Check url and try again");
+	}
+	else if(params[0].indexOf('id=') != 0 || params[1].indexOf('name=') != 0){
+		alert("Incorrect query parameters, Check url and try again");
+	}
 
 	console.log(params);
 	$scope.status = false;
@@ -20,6 +25,7 @@ app.controller("myCtrl", function($scope, $location, $http, $window) {
 	}
 	
 	$scope.checkInvited = function() {
+		$("#loading").show();
 		$http({
 			method : "GET",
 			url : "/checkInvited?" + params[0]
@@ -35,53 +41,64 @@ app.controller("myCtrl", function($scope, $location, $http, $window) {
 						}).then(function mySuccess(response) {
 							console.dir(response);
 							$scope.invited = response.data;
+							$("#loading").hide();
 						}, function myError(response) {
 							console.dir(response);
 							$scope.error = response.statusText;
+							alert("Something went wrong, try again");
+							$("#loading").hide();
 						});
 					}
 				}, function myError(response) {
 					console.dir(response);
 					$scope.error = response.statusText;
+					alert("Something went wrong, try again");
+					$("#loading").hide();
 				});
 	}
 
 	$scope.checkInvited();
 
-	$scope.update = function() {
+	$scope.update = function(payload) {
 		console.log(JSON.stringify($scope.status));
+		$("#loading").show();
 		$http({
 			method : "POST",
 			url : "/updateAttendee",
-			data : $scope.invited
+			data : payload
 		}).then(function mySuccess(response) {
-			// console.dir(response);
+			$scope.invited = response.data;
+			$("#loading").hide();
 		}, function myError(response) {
 			console.dir(response);
 			$scope.error = response.statusText;
+			alert("Something went wrong, try again");
+			$("#loading").hide();
 		});
 	}
 
-	$scope.updateRegitration = function() {
+	$scope.updateRegitration = function() {	
 		if ($scope.invited.registered != true) {
-			$scope.invited.registered = true;
-			$scope.update();
+			var paylaod = JSON.parse(JSON.stringify($scope.invited));
+			paylaod.registered = true;
+			$scope.update(paylaod);
 		}
 	}
 
 	$scope.updateTea = function() {
 		if ($scope.invited.registered == true) {
-			$scope.invited.hightea = true;
-			$scope.update();
+			var paylaod = JSON.parse(JSON.stringify($scope.invited));
+			paylaod.hightea = true;
+			$scope.update(paylaod);
 		}
 	}
 
 	$scope.updateLunch = function() {
 		if ($scope.invited.registered == true) {
-			$scope.invited.luncheon = true;
-			$scope.update();
+			var paylaod = JSON.parse(JSON.stringify($scope.invited));
+			paylaod.luncheon = true;
+			$scope.update(paylaod);
 		}
 	}
 	
-	//3600,5400
 });

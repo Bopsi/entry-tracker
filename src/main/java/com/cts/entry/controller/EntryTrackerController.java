@@ -34,7 +34,7 @@ public class EntryTrackerController {
 			attendee = new Attendee();
 			attendee.setId(id);
 			attendee.setName(name);
-			attendeeRepository.save(attendee);
+			//attendeeRepository.save(attendee);
 		}
 		return attendee;
 	}

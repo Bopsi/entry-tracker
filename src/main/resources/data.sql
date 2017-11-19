@@ -1,4 +1,4 @@
-﻿DELETE FROM invitationlist;
+DELETE FROM invitationlist;
 INSERT INTO invitationlist (ID,NAME,GRADE,CLIENT,PROJECT,MANAGER,OFFICE,DEPARTMENT) VALUES('102534','Bar,Arnab','AD','John Hancock Life Insurance Company- USA','JH-PMO','Roy,Amitabha','Bantala Ph 1 (GTP) SDB 1 SEZ','PV');
 INSERT INTO invitationlist (ID,NAME,GRADE,CLIENT,PROJECT,MANAGER,OFFICE,DEPARTMENT) VALUES('102664','De,Subhabrata','D','Manulife (Singapore) Pte Ltd','PMO - Manulife HK','Roy,Amitabha','Bantala Ph 1 (GTP) SDB 1 SEZ','PV');
 INSERT INTO invitationlist (ID,NAME,GRADE,CLIENT,PROJECT,MANAGER,OFFICE,DEPARTMENT) VALUES('108071','Roy,Amitabha','AVP','John Hancock Life Insurance Company- USA','MLJ - PMO','Baid,Arun','BIPL (BIP) STPI','PV');

@@ -18,28 +18,32 @@ app.factory('Excel',function($window){
 	$scope.attendees = [];
 	$scope.tea = 0;
 	$scope.lunch = 0;
-	$scope.label_all = [ "Invited", "Attended" ];
+	$scope.label_all = [ "Absent", "Presents" ];
 	$scope.data_all = [ 0, 0 ];
-	$scope.label_tea = [ "Present", "Taken" ];
+	$scope.label_tea = [ "Not Taken", "Taken" ];
 	$scope.data_tea = [ 0, 0 ];
-	$scope.label_lunch = [ "Present", "Taken" ];
+	$scope.label_lunch = [ "Not Taken", "Taken" ];
 	$scope.data_lunch = [ 0, 0 ];
 	$scope.colors = ['#F7EB25', '#4F8D40'];
 	$scope.stats = [];
 	$scope.chart = true;
 
 	$scope.fetchInviteds = function() {
+		$("#loading").show();
 		$http({
 			method : "GET",
 			url : "/getInvitationList"
 		}).then(function mySuccess(response) {
 			console.log("Invited");
 			console.dir(response);
+			
 			$scope.inviteds = response.data;
-			$scope.data_all[0] = $scope.inviteds.length;
+			$scope.fetchAttendees();
 		}, function myError(response) {
 			console.dir(response);
 			$scope.error = response.statusText;
+			alert("Something went wrong, try again");
+			$("#loading").hide();
 		});
 	}
 
@@ -51,54 +55,32 @@ app.factory('Excel',function($window){
 			console.log("Attendee");
 			console.dir(response);
 			$scope.attendees = response.data;
+			$scope.data_all[0] = $scope.inviteds.length - $scope.attendees.length;
 			$scope.data_all[1] = $scope.attendees.length;
-			$scope.count();
-			$scope.data_tea[0] = $scope.attendees.length;
+			
+			for (var i = 0; i < $scope.attendees.length; i++) {
+				if ($scope.attendees[i].hightea == true) {
+					$scope.tea++;
+				}
+				if ($scope.attendees[i].luncheon == true) {
+					$scope.lunch++;
+				}
+			}
+			
+			$scope.data_tea[0] = $scope.inviteds.length - $scope.tea;
 			$scope.data_tea[1] = $scope.tea;
-			$scope.data_lunch[0] = $scope.attendees.length;
+			
+			$scope.data_lunch[0] = $scope.inviteds.length - $scope.lunch;
 			$scope.data_lunch[1] = $scope.lunch;
+			$("#loading").hide();
 		}, function myError(response) {
 			console.dir(response);
 			$scope.error = response.statusText;
+			alert("Something went wrong, try again");
+			$("#loading").hide();
 		});
 	}
 
-	$scope.initialize = function() {
-		$scope.fetchInviteds();
-		$scope.fetchAttendees();
-		
-		$scope.data_all = [];
-		$scope.data_all.push($scope.inviteds.length);
-		$scope.data_all.push($scope.attendees.length);
-
-		$scope.tea = 0;
-		$scope.lunch = 0;
-
-		console.log($scope.data_all);
-	}
-
-	$scope.initialize();
-
-	$scope.present = function(id) {
-		for (var i = 0; i < $scope.attendees.length; i++) {
-			if ($scope.attendees[i].id == id) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	$scope.count = function() {
-		for (var i = 0; i < $scope.attendees.length; i++) {
-			if ($scope.attendees[i].hightea == true) {
-				$scope.tea++;
-			}
-			if ($scope.attendees[i].luncheon == true) {
-				$scope.lunch++;
-			}
-		}
-	}
-	
 	$scope.goToList = function(){
 		console.log("Go to List View");
 		for(var i=0;i<$scope.inviteds.length;i++){ 
@@ -114,6 +96,8 @@ app.factory('Excel',function($window){
 		$scope.chart=false;
 	}
 	
+	$scope.fetchInviteds(); 
+	
 	$scope.goToChart = function(){
 		$scope.chart=true;
 	}
@@ -128,8 +112,7 @@ app.factory('Excel',function($window){
 		return null;
 	}
 	
-	$scope.exportToExcel=function(tableId){ 
-		
+	$scope.exportToExcel=function(tableId){ 	
 		console.dir($scope.stats);
         var exportHref=Excel.tableToExcel(tableId,'WireWorkbenchDataExport');
         $timeout(function(){location.href=exportHref;},100); 
