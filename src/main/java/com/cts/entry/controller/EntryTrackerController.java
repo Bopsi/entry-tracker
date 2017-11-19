@@ -22,11 +22,6 @@ public class EntryTrackerController {
 	@Autowired
 	private InvitedRepository invitedRepository;
 
-	@RequestMapping("/")
-	String home() {
-		return "Hello World!";
-	}
-
 	@RequestMapping(path = "/checkInvited", method = RequestMethod.GET)
 	public Invited checkInvited(@RequestParam String id) {
 		return invitedRepository.findOne(id);
@@ -51,8 +46,8 @@ public class EntryTrackerController {
 
 	@RequestMapping(path = "/getAllAttendee", method = RequestMethod.GET)
 	public Iterable<Attendee> getAllAttendee() {
-		//long attendees = attendeeRepository.count();
-		//System.out.println("Attendee count : " + attendees);
+		// long attendees = attendeeRepository.count();
+		// System.out.println("Attendee count : " + attendees);
 		return attendeeRepository.findAll();
 	}
 
@@ -64,14 +59,15 @@ public class EntryTrackerController {
 	@RequestMapping(path = "/getAttendee/{id}", method = RequestMethod.GET)
 	public Attendee getAttendee(@PathVariable String id) {
 		Attendee one = attendeeRepository.findOne(id);
-		//System.out.println(one.getName());
+		// System.out.println(one.getName());
 		return one;
 	}
 
 	@RequestMapping(path = "/getInvitationList", method = RequestMethod.GET)
 	public Iterable<Invited> getInvitationList() {
-		//long inviteds = invitedRepository.count();
-		//System.out.println("Invited count : " + inviteds);
+		// long inviteds = invitedRepository.count();
+		// System.out.println("Invited count : " + inviteds);
 		return invitedRepository.findAll();
 	}
+
 }

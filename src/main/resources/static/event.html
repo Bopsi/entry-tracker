@@ -4,7 +4,7 @@
 <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
 <style>
 table {
-	background-image: linear-gradient(to bottom, #86ff68 30%, #fffc68 70%);
+/* 	background-image: linear-gradient(to bottom, #86ff68 30%, #fffc68 70%); */
 	/* the gradient */
 	background-origin: border-box;
 	/* set background to start from border-box */
@@ -33,6 +33,17 @@ table {
 	margin-bottom: 10px;
 	color: white;
 }
+.yellow {
+	width: 10%;
+	height: 10%;
+	float: left;
+	background-color: yellow;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+.present {
+	background-color: rgba(0,255,0,0.6);
+}
 </style>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/angular.min.js"></script>
@@ -50,7 +61,7 @@ table {
 					</td>
 				</tr>
 				<tr valign="middle" colspan="2" style="width: 100%; height: 50%;background-size: 100% 100%; background-image: url('images/restaurant.jpg');">
-					<td style="text-align: center;">
+					<td style="text-align: center;" ng-if="chart==true">
 						<div id="divGraph1"	style="float: left;left: 100px;height: 45%; width: 45%; margin-left: 27.3%; border: 1px solid black;background-color: rgba(0, 0, 0, 0.4);">
 							<h1 style="color:white">Presence Today {{data_all[1]}}</h1>
 							<h1>
@@ -59,7 +70,6 @@ table {
 							</h1>
 							<canvas id="presence"  class="chart chart-pie" chart-data="data_all" chart-labels="label_all" chart-colors="colors">
 							</canvas> 
-							
 						</div>
 						<div id="divGraph2"	style="float: left;height: 45%; width: 45%; margin: 2.3%; border: 1px solid black;background-color: rgba(0, 0, 0, 0.4);">
 							<h1 style="color:white">Taken Lunch {{data_lunch[0]}}</h1>
@@ -79,15 +89,57 @@ table {
 							<canvas id="tea"  class="chart chart-pie" chart-data="data_tea" chart-labels="label_tea" chart-colors="colors">
 							</canvas> 
 						</div>
-						<!-- <div id="divGraph4"	style="vertical-align:middle;float: left;height: 45%; width: 45%; margin: 2.3%; border: 1px solid black;background-color: rgba(0, 0, 0, 0.4);">
-							<h1 style="color:white">Check Invitaion List</h1>
-							<img src="images/list.svg" width="65%" height="65%" />
-						</div> -->
+					</td>
+					<td style="text-align: center; background-color: rgba(0, 0, 0, 0.5);" ng-if="chart!=true">&nbsp;
+						<table id="tableToExport" style="display:block; height:100%; overflow-y:auto;color:white;">
+							<thead >
+								<tr class="table-header">
+									<th style="border: 1px solid yellow;">Id</th>
+									<th style="border: 1px solid yellow;">Name</th>
+									<th style="border: 1px solid yellow;">Grade</th>
+									<th style="border: 1px solid yellow;">Client</th>
+									<th style="border: 1px solid yellow;">Project</th>
+									<th style="border: 1px solid yellow;">Manager</th>
+									<th style="border: 1px solid yellow;">Office</th>
+									<th style="border: 1px solid yellow;">Department</th>
+									<th style="border: 1px solid yellow;">Registered</th>
+									<th style="border: 1px solid yellow;">Luncheon</th>
+									<th style="border: 1px solid yellow;">High Tea</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="stat in stats" ng-class="{present: stat.registered == true}">
+									<td style="border: 1px solid yellow;">{{stat.id}}</td>
+									<td style="border: 1px solid yellow;">{{stat.name}}</td>
+									<td style="border: 1px solid yellow;">{{stat.grade}}</td>
+									<td style="border: 1px solid yellow;">{{stat.client}}</td>
+									<td style="border: 1px solid yellow;">{{stat.project}}</td>
+									<td style="border: 1px solid yellow;">{{stat.manager}}</td>
+									<td style="border: 1px solid yellow;">{{stat.office}}</td>
+									<td style="border: 1px solid yellow;">{{stat.department}}</td>
+									<td style="border: 1px solid yellow;">{{stat.registered}}</td>
+									<td style="border: 1px solid yellow;">{{stat.luncheon}}</td>
+									<td style="border: 1px solid yellow;">{{stat.hightea}}</td>
+								</tr>
+							</tbody>
+						</table>
 					</td>
 				</tr>
 				<tr>
-					<td style="width: 100%; height:30%" colspan="2">
-						<img src="images/page_bottom.jpg" width="100%" height="100%" />
+					<td style="vertical-align:top; width: 100%; height:30%; background-size: 100% 100%; background-image: url('images/page_bottom.jpg');" colspan="2">
+						<center ng-if="chart==true">
+							<button class="btn btn-link" ng-click="goToList()" style="height: 50px; width: 250px; margin-top: 35px; font-size: x-large;">
+								<b>List View</b>
+							</button>
+						</center>
+						<center ng-if="chart==false">
+							<button class="btn btn-link" ng-click="goToChart()" style="height: 50px; width: 250px; margin-top: 35px; font-size: x-large;">
+								<b>Chart View</b>
+							</button>
+							<button class="btn btn-link" ng-click="exportToExcel('#tableToExport')" style="height: 50px; width: 250px; margin-top: 35px; font-size: x-large;">
+								<b>Export</b>
+							</button>
+						</center>
 					</td>
 				</tr>
 			</tbody>

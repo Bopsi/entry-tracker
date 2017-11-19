@@ -23,4 +23,11 @@ public class ViewController {
 		//System.out.println("eventInfo");
 		return "event.html";
 	}
+	
+	@RequestMapping("/volunteer")
+	public String volunteer() {
+		//System.out.println("eventInfo");
+		return "volun.html";
+	}
+	
 }

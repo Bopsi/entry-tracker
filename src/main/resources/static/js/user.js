@@ -1,6 +1,7 @@
 var app = angular.module("ctsEvent", []);
-app.controller("myCtrl", function($scope, $location, $http) {
-
+app.controller("myCtrl", function($scope, $location, $http, $window) {
+	var countDownDate = new Date("Nov 17, 2017 10:59:59").getTime();
+	var now = new Date().getTime();
 	params = $location.absUrl().split('?')[1];
 	params = params.split('&');
 
@@ -13,7 +14,11 @@ app.controller("myCtrl", function($scope, $location, $http) {
 		"hightea" : false,
 		"luncheon" : false
 	}
-
+	
+	if(localStorage.getItem("eventRole") != 'volunteer'){
+		$window.location.href = '/home';
+	}
+	
 	$scope.checkInvited = function() {
 		$http({
 			method : "GET",

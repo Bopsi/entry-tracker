@@ -1,4 +1,4 @@
-DELETE FROM invitationlist;
+﻿DELETE FROM invitationlist;
 INSERT INTO invitationlist (ID,NAME,GRADE,CLIENT,PROJECT,MANAGER,OFFICE,DEPARTMENT) VALUES('102534','Bar,Arnab','AD','John Hancock Life Insurance Company- USA','JH-PMO','Roy,Amitabha','Bantala Ph 1 (GTP) SDB 1 SEZ','PV');
 INSERT INTO invitationlist (ID,NAME,GRADE,CLIENT,PROJECT,MANAGER,OFFICE,DEPARTMENT) VALUES('102664','De,Subhabrata','D','Manulife (Singapore) Pte Ltd','PMO - Manulife HK','Roy,Amitabha','Bantala Ph 1 (GTP) SDB 1 SEZ','PV');
 INSERT INTO invitationlist (ID,NAME,GRADE,CLIENT,PROJECT,MANAGER,OFFICE,DEPARTMENT) VALUES('108071','Roy,Amitabha','AVP','John Hancock Life Insurance Company- USA','MLJ - PMO','Baid,Arun','BIPL (BIP) STPI','PV');
@@ -180,3 +180,6 @@ INSERT INTO invitationlist (ID,NAME,GRADE,CLIENT,PROJECT,MANAGER,OFFICE,DEPARTME
 INSERT INTO invitationlist (ID,NAME,GRADE,CLIENT,PROJECT,MANAGER,OFFICE,DEPARTMENT) VALUES('604719','Sahoo, Shantanu ','A','John Hancock Life Insurance Company- USA','RSA Staff Aug','Ghosh, Niladri Sekhar','Bantala Ph 1 (GTP) SDB 1 SEZ','PV');
 INSERT INTO invitationlist (ID,NAME,GRADE,CLIENT,PROJECT,MANAGER,OFFICE,DEPARTMENT) VALUES('660678','Chatterjee, Aritra','A','John Hancock Life Insurance Company- USA','MLC/Travel Modernization - Digital','Chakraborty, Aniruddha','BIPL (BIP) STPI','PV');
 INSERT INTO invitationlist (ID,NAME,GRADE,CLIENT,PROJECT,MANAGER,OFFICE,DEPARTMENT) VALUES('660392','Roy, Sourav','A','John Hancock Life Insurance Company- USA','RSA Staff Aug','Ghosh, Niladri Sekhar','Bantala Ph 1 (GTP) SDB 1 SEZ','PV');
+INSERT INTO invitationlist (ID,NAME,GRADE,CLIENT,PROJECT,MANAGER,OFFICE,DEPARTMENT) VALUES('301425','Saha, Manoj Kumar','SM','John Hancock Life Insurance Company- USA','JHI USI App Dev Flex Misc','Bar,Arnab','Bantala Ph 1 (GTP) SDB 1 SEZ','PV');
+INSERT INTO invitationlist (ID,NAME,GRADE,CLIENT,PROJECT,MANAGER,OFFICE,DEPARTMENT) VALUES('664451','Banerjee, Rituparna','A','John Hancock Life Insurance Company- USA','JHI USI App Dev Flex Misc','Adhikary,Sudipta','Bantala Ph 1 (GTP) SDB 1 SEZ','PV');
+INSERT INTO invitationlist (ID,NAME,GRADE,CLIENT,PROJECT,MANAGER,OFFICE,DEPARTMENT) VALUES('428003','Dutta, Soumita','A','John Hancock Life Insurance Company- USA','JHI USI App Dev Flex Misc','Adhikary,Sudipta','Bantala Ph 1 (GTP) SDB 1 SEZ','PV');

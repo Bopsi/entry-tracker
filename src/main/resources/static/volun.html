@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	function clearRole() {
+		console.log("Removing : " + localStorage.getItem("eventRole"));
+		localStorage.removeItem("eventRole");
+		document.getElementById("volunteer").innerHTML = "Congrats you are : "	+ localStorage.getItem("eventRole");
+	}
+</script>
+</head>
+<body>
+	<h1>CTS EVENT</h1>
+	<h1 id="volunteer"></h1>
+	<button onclick="clearRole()">Clear Cache</button>
+	<script>
+		// Check browser support
+		if (typeof (Storage) !== "undefined") {
+			localStorage.setItem("eventRole", "volunteer");
+			document.getElementById("volunteer").innerHTML = "Congrats you are : "	+ localStorage.getItem("eventRole");
+		} else {
+			document.getElementById("volunteer").innerHTML = "Sorry, your browser does not support Web Storage...";
+		}
+	</script>
+</body>
+</html>
